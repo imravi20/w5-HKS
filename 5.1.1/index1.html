@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="todos"></div>
+    <script>
+
+        let state={
+            count:0
+        }
+
+        function updateCounter(){
+            state.count++;
+            buttonComponentReRender();
+        }
+
+        function buttonComponentReRender(){
+            document.getElementById("todos").innerText="";
+            const child=buttonComponent(state.count);
+            document.getElementById("todos").appendChild(child);
+
+            console.log(child.innerHTML);
+            console.log(child.innerText);
+            console.log("done")
+
+        }
+
+        function buttonComponent(count){
+           const button= document.createElement("button");
+           button.setAttribute("onclick","updateCounter()");
+           button.innerText=`count is ${count}`;
+           return button;
+        }
+
+        buttonComponentReRender();
+    </script>
+</body>
+</html>
